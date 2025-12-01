@@ -1,6 +1,6 @@
 import streamlit as st
 from openai import OpenAI
-cleint=OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+client=OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 st.title("Cybersecuirity AI Assistant")
 if "messages" not in st.session_state:
     st.session_state.messages = [{
@@ -25,7 +25,7 @@ if prompt:
     with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})   
-    completion = cleint.chat.completions.create(
+    completion = client.chat.completions.create(
         model="gpt-5-nano",
         messages=st.session_state.messages
     )
